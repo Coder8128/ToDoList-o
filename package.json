@@ -1,0 +1,25 @@
+{
+  "name": "todolist-o",
+  "version": "1.0.0",
+  "description": "a simple ToDo App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coder8128/ToDoList-o.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Coder8128/ToDoList-o/issues"
+  },
+  "homepage": "https://github.com/Coder8128/ToDoList-o#readme",
+  "devDependencies": {
+    "css-loader": "^7.1.4",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.108.4"
+  }
+}

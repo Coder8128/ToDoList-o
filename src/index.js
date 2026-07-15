@@ -1,3 +1,5 @@
+import "./style.css";
+
 function createToDo(title, text, priority) {
     return {
         title: title,
