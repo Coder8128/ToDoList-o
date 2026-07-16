@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
 </head>
+
 <body>
     <h1>Things to Do: </h1>
     <div id="container">
-    <div class="left">
-        <h1>Side Tab</h1>
-    </div>
-    <div class="right">
-        <h1>Expanded ToDo</h1>
-    </div>
+        <div class="left">
+            <h1>Side Tab</h1>
+        </div>
+        <div class="right">
+            <h1>Expanded ToDo</h1>
+        </div>
+
+        <div class="create">
+            <form id="itemForm">
+                <input id="itemInput" type="text" placeholder="Enter item">
+                <button type="submit">Create Item</button>
+            </form>
+        </div>
     </div>
     <script src="bundle.js"></script>
 </body>
+
 </html>
