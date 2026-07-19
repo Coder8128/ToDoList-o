@@ -12,15 +12,28 @@
     <div id="container">
         <div class="left">
             <h1>Side Tab</h1>
+            <div class="tododTitle">
+
+            </div>
         </div>
         <div class="right">
             <h1>Expanded ToDo</h1>
+            <div class="todoFull">
+
+            </div>
         </div>
 
         <div class="create">
             <form id="itemForm">
-                <input id="itemInput" type="text" placeholder="Enter item">
-                <input id="itemInput" type="text" placeholder="Enter item">
+                <label for="title">Title:</label><br>
+                <input id="title" type="text" placeholder="text..." value="Cook food"><br>
+
+                <label for="text">description:</label><br>
+                <input id="text" type="text" placeholder="text..." value="Cook 150g Chicken, 100g Rice"><br>
+
+                <label for="priority">prio:</label><br>
+                <input id="priority" type="text" placeholder="text..." value="High"><br>
+
                 <button type="submit">Create Item</button>
             </form>
         </div>
