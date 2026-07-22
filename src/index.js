@@ -22,6 +22,24 @@ function createPorject(name) {
     };
 }
 
+function displayNote(todo) {
+    document.querySelector(".todoFull").innerHTML = "";
+
+    //Right tab
+
+    var desc = document.createElement("p");
+    var prio = document.createElement("p");
+    var titleFull = document.createElement("H2");
+
+    titleFull.innerHTML = todo.title;
+    desc.innerHTML = todo.text;
+    prio.innerHTML = todo.priority;
+
+    document.querySelector(".todoFull").appendChild(titleFull);
+    document.querySelector(".todoFull").appendChild(desc);
+    document.querySelector(".todoFull").appendChild(prio);
+}
+
 document.getElementById("itemForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -30,23 +48,7 @@ document.getElementById("itemForm").addEventListener("submit", function (e) {
     const todo = createToDo(e.target[0].value, e.target[1].value, e.target[2].value);
     console.log(todo);
 
-    function displayNote(todo) {
-        document.querySelector(".todoFull").innerHTML = "";
 
-        //Right tab
-
-        var desc = document.createElement("p");
-        var prio = document.createElement("p");
-        var titleFull = document.createElement("H2");
-
-        titleFull.innerHTML = todo.title;
-        desc.innerHTML = todo.text;
-        prio.innerHTML = todo.priority;
-
-        document.querySelector(".todoFull").appendChild(titleFull);
-        document.querySelector(".todoFull").appendChild(desc);
-        document.querySelector(".todoFull").appendChild(prio);
-    }
 
     //Side tab
     var titl = document.createElement("H1");
