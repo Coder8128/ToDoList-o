@@ -2,12 +2,14 @@ import "./style.css";
 
 function createToDo(title, text, priority) {
     let rand = Math.floor(Math.random() * 300);
+    let finish = false;
 
     return {
         id: rand,
         title: title,
         text: text,
-        priority: priority
+        priority: priority,
+        finish: finish
     };
 }
 
@@ -22,22 +24,37 @@ function createPorject(name) {
     };
 }
 
+function flip(e, todo) {
+    e.innerHTML == "true" ? e.innerHTML = "false" : e.innerHTML = "true";
+    todo.finish = !todo.finish;
+    console.log(todo);
+}
+
 function displayNote(todo) {
     document.querySelector(".todoFull").innerHTML = "";
 
     //Right tab
 
+    var todoContainer = document.createElement("div");
     var desc = document.createElement("p");
     var prio = document.createElement("p");
+    var finish = document.createElement("p");
     var titleFull = document.createElement("H2");
 
+    todoContainer.id = todo.id;
+    todoContainer.classList.add("todoItem")
     titleFull.innerHTML = todo.title;
     desc.innerHTML = todo.text;
     prio.innerHTML = todo.priority;
+    finish.innerHTML = todo.finish;
+    finish.id = "fnsh";
+    finish.addEventListener("click", () => { flip(finish, todo) });
 
-    document.querySelector(".todoFull").appendChild(titleFull);
-    document.querySelector(".todoFull").appendChild(desc);
-    document.querySelector(".todoFull").appendChild(prio);
+    todoContainer.appendChild(titleFull);
+    todoContainer.appendChild(desc);
+    todoContainer.appendChild(prio);
+    todoContainer.appendChild(finish);
+    document.querySelector(".todoFull").appendChild(todoContainer);
 }
 
 document.getElementById("itemForm").addEventListener("submit", function (e) {
