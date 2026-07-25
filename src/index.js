@@ -84,7 +84,9 @@ function displayNotes(project) {
         var desc = document.createElement("p");
         var prio = document.createElement("p");
         var finish = document.createElement("p");
+        var delBtn = document.createElement("p");
 
+        item.id = x.id;
         item.classList.add("itemBlock");
         titleFull.innerHTML = x.title;
         desc.innerHTML = x.text;
@@ -92,13 +94,27 @@ function displayNotes(project) {
         finish.innerHTML = x.finish;
         finish.id = "fnsh";
         finish.addEventListener("click", () => { flip(finish, x) });
+        delBtn.innerHTML = "DELETE";
+        delBtn.id = "delBtn";
+        delBtn.addEventListener("click", () => { deleteNote(project, project.todoArr.indexOf(x)) });
 
         item.appendChild(titleFull);
         item.appendChild(desc);
         item.appendChild(prio);
         item.appendChild(finish);
+        item.appendChild(delBtn);
         document.querySelector(".todoFull").appendChild(item);
     })
+}
+
+function deleteNote(proj, id) {
+    console.log(proj);
+    console.log(id);
+
+    proj.todoArr.splice(id, 1);
+    displayNotes(proj);
+    console.log(proj.todoArr);
+
 }
 
 // function expandNote(todo) {

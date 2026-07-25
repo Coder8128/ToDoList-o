@@ -34,7 +34,21 @@
 .itemBlock {
     border: black 2px solid;
     width: 10%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1.5;
     padding: 1%;
     margin: 5px;
+    border-radius: 0 20px 0 0;
+
+    position: relative;
+}
+
+#delBtn {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    border: brown 2px solid;
+    background-color: brown;
+    color: white;
+    font-weight: bold;
+    font-size: 1vh;
 }
