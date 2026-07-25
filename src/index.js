@@ -1,6 +1,8 @@
 import "./style.css";
 
-function createToDo(title, text, priority) {
+let projects = [];
+
+function createToDo(title, text, priority, proj) {
     let rand = Math.floor(Math.random() * 300);
     let finish = false;
 
@@ -9,11 +11,12 @@ function createToDo(title, text, priority) {
         title: title,
         text: text,
         priority: priority,
-        finish: finish
+        finish: finish,
+        proj: proj
     };
 }
 
-function createPorject(name) {
+function createProject(name) {
     const todoArr = [];
     return {
         name: name,
@@ -24,57 +27,118 @@ function createPorject(name) {
     };
 }
 
+
+//create a few fake projects and todos
+let mainProject = createProject("Main");
+let todo1 = createToDo("Cook food", "Cook 150g Chicken, 100g Rice", "High", false, "Main");
+let todo2 = createToDo("Clean the house", "Wash dishes, dust off the surfaces etc", "High", false, "Main");
+let todo3 = createToDo("Send mail", "Send the item back", "Low", false, "Main");
+mainProject.todoArr.push(todo1);
+mainProject.todoArr.push(todo2);
+mainProject.todoArr.push(todo3);
+
+projects.push(mainProject);
+dispProjects();
+
 function flip(e, todo) {
     e.innerHTML == "true" ? e.innerHTML = "false" : e.innerHTML = "true";
     todo.finish = !todo.finish;
     console.log(todo);
 }
 
-function displayNote(todo) {
+//fill dropdown items
+const dropdown = document.getElementById("proj");
+projects.forEach(x => {
+    const option = document.createElement("option");
+
+    option.value = projects.indexOf(x);       // store the ID
+    option.textContent = x.name; // what the user sees
+
+    dropdown.appendChild(option);
+});
+
+function dispProjects() {
+
+    projects.forEach(x => {
+        var titl = document.createElement("H2");
+        titl.innerHTML = x.name;
+        document.querySelector(".projectList").appendChild(titl);
+
+        let indx = projects.indexOf(x);
+        titl.id = indx;
+
+
+        titl.addEventListener("click", () => { displayNotes(x) });
+    });
+    console.log(projects);
+}
+
+function displayNotes(project) {
+    console.log(project.todoArr);
     document.querySelector(".todoFull").innerHTML = "";
 
-    //Right tab
+    project.todoArr.forEach(x => {
+        var item = document.createElement("div");
 
-    var todoContainer = document.createElement("div");
-    var desc = document.createElement("p");
-    var prio = document.createElement("p");
-    var finish = document.createElement("p");
-    var titleFull = document.createElement("H2");
+        var titleFull = document.createElement("H2");
+        var desc = document.createElement("p");
+        var prio = document.createElement("p");
+        var finish = document.createElement("p");
 
-    todoContainer.id = todo.id;
-    todoContainer.classList.add("todoItem")
-    titleFull.innerHTML = todo.title;
-    desc.innerHTML = todo.text;
-    prio.innerHTML = todo.priority;
-    finish.innerHTML = todo.finish;
-    finish.id = "fnsh";
-    finish.addEventListener("click", () => { flip(finish, todo) });
+        item.classList.add("itemBlock");
+        titleFull.innerHTML = x.title;
+        desc.innerHTML = x.text;
+        prio.innerHTML = x.priority;
+        finish.innerHTML = x.finish;
+        finish.id = "fnsh";
+        finish.addEventListener("click", () => { flip(finish, x) });
 
-    todoContainer.appendChild(titleFull);
-    todoContainer.appendChild(desc);
-    todoContainer.appendChild(prio);
-    todoContainer.appendChild(finish);
-    document.querySelector(".todoFull").appendChild(todoContainer);
+        item.appendChild(titleFull);
+        item.appendChild(desc);
+        item.appendChild(prio);
+        item.appendChild(finish);
+        document.querySelector(".todoFull").appendChild(item);
+    })
 }
+
+// function expandNote(todo) {
+//     document.querySelector(".todoFull").innerHTML = "";
+
+//     //Right tab
+
+//     var todoContainer = document.createElement("div");
+//     var desc = document.createElement("p");
+//     var prio = document.createElement("p");
+//     var finish = document.createElement("p");
+//     var titleFull = document.createElement("H2");
+
+//     todoContainer.id = todo.id;
+//     todoContainer.classList.add("todoItem")
+//     titleFull.innerHTML = todo.title;
+//     desc.innerHTML = todo.text;
+//     prio.innerHTML = todo.priority;
+//     finish.innerHTML = todo.finish;
+//     finish.id = "fnsh";
+//     finish.addEventListener("click", () => { flip(finish, todo) });
+
+//     todoContainer.appendChild(titleFull);
+//     todoContainer.appendChild(desc);
+//     todoContainer.appendChild(prio);
+//     todoContainer.appendChild(finish);
+//     document.querySelector(".todoFull").appendChild(todoContainer);
+// }
 
 document.getElementById("itemForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     document.querySelector(".todoFull").innerHTML = "";
 
-    const todo = createToDo(e.target[0].value, e.target[1].value, e.target[2].value);
+    const todo = createToDo(e.target[0].value, e.target[1].value, e.target[2].value, e.target[3].value);
     console.log(todo);
 
+    let proj = todo.proj;
 
-
-    //Side tab
-    var titl = document.createElement("H1");
-    titl.innerHTML = todo.title;
-    document.querySelector(".tododTitle").appendChild(titl);
-    titl.id = todo.id;
-    titl.addEventListener("click", () => { displayNote(todo) });
-
-
-
+    projects[proj].todoArr.push(todo);
+    console.log(projects);
 });
 

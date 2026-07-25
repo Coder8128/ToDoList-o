@@ -26,3 +26,15 @@
 
     padding: 1%;
 }
+
+.todoFull {
+    display: flex;
+}
+
+.itemBlock {
+    border: black 2px solid;
+    width: 10%;
+    aspect-ratio: 1 / 1;
+    padding: 1%;
+    margin: 5px;
+}
