@@ -52,3 +52,40 @@
     font-weight: bold;
     font-size: 1vh;
 }
+
+.left h1 {
+    text-align: center;
+}
+
+.right h1 {
+    margin-left: 20px;
+}
+
+.projectList h2 {
+    margin-left: 15px;
+}
+
+.formBlock {
+    margin-left: 15px;
+}
+
+.plusSign {
+    border: rgb(190, 190, 190) 2px solid;
+    width: 10%;
+    aspect-ratio: 1 / 1.5;
+    padding: 1%;
+    margin: 5px;
+    border-radius: 0 20px 0 0;
+    font-size: 3vh;
+    color: rgb(153, 153, 153);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plusSign h2 {
+    margin: 0;
+}

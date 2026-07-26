@@ -47,17 +47,23 @@ function flip(e, todo) {
 }
 
 //fill dropdown items
-const dropdown = document.getElementById("proj");
-projects.forEach(x => {
-    const option = document.createElement("option");
+function dispDropdown() {
+    const dropdown = document.getElementById("proj");
+    dropdown.innerHTML = "";
+    projects.forEach(x => {
+        const option = document.createElement("option");
 
-    option.value = projects.indexOf(x);       // store the ID
-    option.textContent = x.name; // what the user sees
+        option.value = projects.indexOf(x);       // store the ID
+        option.textContent = x.name; // what the user sees
 
-    dropdown.appendChild(option);
-});
+        dropdown.appendChild(option);
+    });
+}
+dispDropdown();
 
 function dispProjects() {
+
+    document.querySelector(".projectList").innerHTML = "";
 
     projects.forEach(x => {
         var titl = document.createElement("H2");
@@ -105,44 +111,20 @@ function displayNotes(project) {
         item.appendChild(delBtn);
         document.querySelector(".todoFull").appendChild(item);
     })
+    var plusBtn = document.createElement("div");
+    var plusBtnH2 = document.createElement("h2");
+    plusBtnH2.innerHTML = "+";
+    plusBtn.classList.add("plusSign");
+    plusBtn.appendChild(plusBtnH2);
+    document.querySelector(".todoFull").appendChild(plusBtn);
 }
 
 function deleteNote(proj, id) {
-    console.log(proj);
-    console.log(id);
 
     proj.todoArr.splice(id, 1);
     displayNotes(proj);
     console.log(proj.todoArr);
-
 }
-
-// function expandNote(todo) {
-//     document.querySelector(".todoFull").innerHTML = "";
-
-//     //Right tab
-
-//     var todoContainer = document.createElement("div");
-//     var desc = document.createElement("p");
-//     var prio = document.createElement("p");
-//     var finish = document.createElement("p");
-//     var titleFull = document.createElement("H2");
-
-//     todoContainer.id = todo.id;
-//     todoContainer.classList.add("todoItem")
-//     titleFull.innerHTML = todo.title;
-//     desc.innerHTML = todo.text;
-//     prio.innerHTML = todo.priority;
-//     finish.innerHTML = todo.finish;
-//     finish.id = "fnsh";
-//     finish.addEventListener("click", () => { flip(finish, todo) });
-
-//     todoContainer.appendChild(titleFull);
-//     todoContainer.appendChild(desc);
-//     todoContainer.appendChild(prio);
-//     todoContainer.appendChild(finish);
-//     document.querySelector(".todoFull").appendChild(todoContainer);
-// }
 
 document.getElementById("itemForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -158,3 +140,12 @@ document.getElementById("itemForm").addEventListener("submit", function (e) {
     console.log(projects);
 });
 
+document.getElementById("projectsForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const proj = createProject(e.target[0].value);
+    projects.push(proj);
+    console.log(projects);
+    dispProjects();
+    dispDropdown();
+});
