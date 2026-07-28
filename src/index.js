@@ -46,20 +46,6 @@ function flip(e, todo) {
     console.log(todo);
 }
 
-//fill dropdown items
-function dispDropdown() {
-    const dropdown = document.getElementById("proj");
-    dropdown.innerHTML = "";
-    projects.forEach(x => {
-        const option = document.createElement("option");
-
-        option.value = projects.indexOf(x);       // store the ID
-        option.textContent = x.name; // what the user sees
-
-        dropdown.appendChild(option);
-    });
-}
-dispDropdown();
 
 function dispProjects() {
 
@@ -144,7 +130,6 @@ function createNewNote(x, btn) {
     btn.classList.remove("plusSign");
     btn.classList.add("plusBlock");
     btn.appendChild(form);
-    dispDropdown();
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -170,22 +155,6 @@ function deleteNote(proj, id) {
     console.log(proj.todoArr);
 }
 
-document.getElementById("itemForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    document.querySelector(".todoFull").innerHTML = "";
-
-    const todo = createToDo(e.target[0].value, e.target[1].value, e.target[2].value, e.target[3].value);
-    console.log(todo);
-
-    let proj = todo.proj;
-
-    projects[proj].todoArr.push(todo);
-    console.log(projects);
-
-    displayNotes(projects[proj]);
-
-});
 
 document.getElementById("projectsForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -194,5 +163,4 @@ document.getElementById("projectsForm").addEventListener("submit", function (e) 
     projects.push(proj);
     console.log(projects);
     dispProjects();
-    dispDropdown();
 });
