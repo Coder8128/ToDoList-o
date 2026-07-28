@@ -114,9 +114,53 @@ function displayNotes(project) {
     var plusBtn = document.createElement("div");
     var plusBtnH2 = document.createElement("h2");
     plusBtnH2.innerHTML = "+";
+    plusBtnH2.addEventListener("click", function () {
+        createNewNote(project, plusBtn);
+    });
     plusBtn.classList.add("plusSign");
     plusBtn.appendChild(plusBtnH2);
     document.querySelector(".todoFull").appendChild(plusBtn);
+}
+
+function createNewNote(x, btn) {
+    const form = document.createElement("form");
+    form.id = "itemForm";
+    btn.innerHTML = "";
+
+    form.innerHTML = `
+    <label for="title">Title:</label><br>
+    <input id="title" type="text" placeholder="text..." value="Cook food"><br>
+
+    <label for="text">Description:</label><br>
+    <input id="text" type="text" placeholder="text..." value="Cook 150g Chicken, 100g Rice"><br>
+
+    <label for="priority">Priority:</label><br>
+    <input id="priority" type="text" placeholder="text..." value="High"><br>
+
+    <br>
+
+    <button type="submit">Create Item</button>`;
+
+    btn.classList.remove("plusSign");
+    btn.classList.add("plusBlock");
+    btn.appendChild(form);
+    dispDropdown();
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        document.querySelector(".todoFull").innerHTML = "";
+
+        const todo = createToDo(e.target[0].value, e.target[1].value, e.target[2].value, e.target[3].value);
+        console.log(todo);
+        console.log(x);
+        x.todoArr.push(todo);
+        console.log(projects);
+        displayNotes(x);
+
+    });
+
+
 }
 
 function deleteNote(proj, id) {
@@ -138,6 +182,9 @@ document.getElementById("itemForm").addEventListener("submit", function (e) {
 
     projects[proj].todoArr.push(todo);
     console.log(projects);
+
+    displayNotes(projects[proj]);
+
 });
 
 document.getElementById("projectsForm").addEventListener("submit", function (e) {
