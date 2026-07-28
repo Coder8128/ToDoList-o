@@ -27,7 +27,6 @@ function createProject(name) {
     };
 }
 
-
 //create a few fake projects and todos
 let mainProject = createProject("Main");
 let todo1 = createToDo("Cook food", "Cook 150g Chicken, 100g Rice", "High", false, "Main");
@@ -46,7 +45,6 @@ function flip(e, todo) {
     console.log(todo);
 }
 
-
 function dispProjects() {
 
     document.querySelector(".projectList").innerHTML = "";
@@ -55,11 +53,8 @@ function dispProjects() {
         var titl = document.createElement("H2");
         titl.innerHTML = x.name;
         document.querySelector(".projectList").appendChild(titl);
-
         let indx = projects.indexOf(x);
         titl.id = indx;
-
-
         titl.addEventListener("click", () => { displayNotes(x) });
     });
     console.log(projects);
@@ -144,8 +139,6 @@ function createNewNote(x, btn) {
         displayNotes(x);
 
     });
-
-
 }
 
 function deleteNote(proj, id) {
@@ -154,7 +147,6 @@ function deleteNote(proj, id) {
     displayNotes(proj);
     console.log(proj.todoArr);
 }
-
 
 document.getElementById("projectsForm").addEventListener("submit", function (e) {
     e.preventDefault();
