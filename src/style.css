@@ -1,3 +1,8 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F5F5DC;
+}
+
 body {
     margin: 0;
 }
@@ -14,13 +19,12 @@ body {
 }
 
 .left {
-    border: black 2px solid;
+    border-right: black 3px solid;
     height: 100vh;
     box-sizing: border-box;
 }
 
 .right {
-    border: black 2px solid;
     height: 100vh;
     box-sizing: border-box;
 }
@@ -37,7 +41,7 @@ body {
 }
 
 .itemBlock {
-    border: black 2px solid;
+    border: white 4px solid;
     width: 10%;
     aspect-ratio: 1 / 1.5;
     padding: 1%;
@@ -96,7 +100,7 @@ body {
 }
 
 .plusBlock {
-    border: black 2px solid;
+    border: white 4px solid;
     width: 10%;
     aspect-ratio: 1 / 1.5;
     padding: 1%;
@@ -104,4 +108,26 @@ body {
     border-radius: 0 20px 0 0;
 
     position: relative;
+}
+
+.left>h1,
+.right>h1 {
+    background-color: #FFBF00;
+    margin: 0;
+    padding: 20px;
+    color: white;
+}
+
+.projectList>h2 {
+    border-bottom: 2px solid gray;
+    width: 80%;
+}
+
+#projectsForm>input {
+    width: 15vh;
+}
+
+#itemForm>input {
+    width: 90%;
+    margin-bottom: 7px;
 }

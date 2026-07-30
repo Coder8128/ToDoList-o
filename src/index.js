@@ -40,7 +40,7 @@ projects.push(mainProject);
 dispProjects();
 
 function flip(e, todo) {
-    e.innerHTML == "true" ? e.innerHTML = "false" : e.innerHTML = "true";
+    e.innerHTML == "True" ? e.innerHTML = "False" : e.innerHTML = "True";
     todo.finish = !todo.finish;
     console.log(todo);
 }
@@ -110,10 +110,10 @@ function createNewNote(x, btn) {
 
     form.innerHTML = `
     <label for="title">Title:</label><br>
-    <input id="title" type="text" placeholder="text..." value="Cook food"><br>
+    <input id="title" type="text" placeholder="text..." required><br>
 
     <label for="text">Description:</label><br>
-    <input id="text" type="text" placeholder="text..." value="Cook 150g Chicken, 100g Rice"><br>
+    <input id="text" type="text" placeholder="text..."><br>
 
     <label for="priority">Priority:</label><br>
     <input id="priority" type="text" placeholder="text..." value="High"><br>
@@ -155,4 +155,5 @@ document.getElementById("projectsForm").addEventListener("submit", function (e) 
     projects.push(proj);
     console.log(projects);
     dispProjects();
+    e.target.reset();
 });
